@@ -22,7 +22,7 @@
 | `sensor`        | Show info from IndraV2H API.                                              |
 | `select`        | Select V2H Charger Mode                                                   |
 
-![example][indra]
+![example][indraimg]
 
 **NOTE: Indra Renewable Technologies Limited are aware of this integration. However, this is an unofficial integration and Indra are not able to provide support for direct API integrations. The Indra API will likely change in future which may result in functionality provided by this integration failing at any time.**
 
@@ -86,7 +86,7 @@ Much inspiration and help in understanding HA custom integrations from [@trizmar
 [hacsbadge]: https://img.shields.io/badge/HACS-Custom-orange.svg?style=for-the-badge
 [discord]: https://discord.gg/Qa5fW2R
 [discord-shield]: https://img.shields.io/discord/330944238910963714.svg?style=for-the-badge
-[exampleimg]: example.png
+[indraimg]: indra.png
 [forum-shield]: https://img.shields.io/badge/community-forum-brightgreen.svg?style=for-the-badge
 [forum]: https://community.home-assistant.io/
 [license-shield]: https://img.shields.io/github/license/creatingwake/ha-indrav2h.svg?style=for-the-badge
