@@ -22,7 +22,7 @@
 | `sensor`        | Show info from IndraV2H API.                                              |
 | `select`        | Select V2H Charger Mode                                                   |
 
-![indra][indraimg]
+![example][indra]
 
 **NOTE: Indra Renewable Technologies Limited are aware of this integration. However, this is an unofficial integration and Indra are not able to provide support for direct API integrations. The Indra API will likely change in future which may result in functionality provided by this integration failing at any time.**
 
