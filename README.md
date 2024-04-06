@@ -19,11 +19,11 @@
 
 | Platform        | Description                                                               |
 | --------------- | ------------------------------------------------------------------------- |
-| `binary_sensor` | Show something `True` or `False`.                                         |
-| `sensor`        | Show info from IndraV2H API. |
-| `switch`        | Switch something `True` or `False`.                                       |
+| `sensor`        | Show info from IndraV2H API.                                              |
+| `select`        | Select V2H Charger Mode                                                   |
 
-![example][exampleimg]
+![indra][indraimg]
+**NOTE: Indra Renewable Technologies Limited are aware of this integration. However, this is an unofficial integration and Indra are not able to provide support for direct API integrations. The Indra API will likely change in future which may result in functionality provided by this integration failing at any time.**
 
 ## Installation
 
@@ -41,22 +41,24 @@ Using your HA configuration directory (folder) as a starting point you should no
 custom_components/indrav2h/translations/en.json
 custom_components/indrav2h/translations/fr.json
 custom_components/indrav2h/translations/nb.json
-custom_components/indrav2h/translations/sensor.en.json
-custom_components/indrav2h/translations/sensor.fr.json
-custom_components/indrav2h/translations/sensor.nb.json
-custom_components/indrav2h/translations/sensor.nb.json
 custom_components/indrav2h/__init__.py
-custom_components/indrav2h/binary_sensor.py
 custom_components/indrav2h/config_flow.py
 custom_components/indrav2h/const.py
+custom_components/indrav2h/entity.py
 custom_components/indrav2h/manifest.json
+custom_components/indrav2h/select.py
 custom_components/indrav2h/sensor.py
-custom_components/indrav2h/switch.py
 ```
 
 ## Configuration is done in the UI
 
 <!---->
+## Support
+**NOTE: Please do not contact Indra Support. Indra are unable to assist with unofficial API integrations.**
+
+This is a community project that lacks formal support.
+
+For support from the community please join the Indra V2H trial support community: https://indra.v2h.zendesk.com/hc/en-gb/community/topics
 
 ## Contributions are welcome!
 
@@ -67,6 +69,8 @@ If you want to contribute to this please read the [Contribution guidelines](CONT
 This project was generated from [@oncleben31](https://github.com/oncleben31)'s [Home Assistant Custom Component Cookiecutter](https://github.com/oncleben31/cookiecutter-homeassistant-custom-component) template.
 
 Code template was mainly taken from [@Ludeeus](https://github.com/ludeeus)'s [integration_blueprint][integration_blueprint] template
+
+Much inspiration and help in understanding HA custom integrations from [@trizmark](https://github.com/trizmark) and the [myenergi HA integration](https://github.com/CJNE/ha-myenergi)
 
 ---
 
