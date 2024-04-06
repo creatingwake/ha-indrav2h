@@ -19,7 +19,7 @@ BINARY_SENSOR = "binary_sensor"
 SENSOR = "sensor"
 SWITCH = "switch"
 SELECT = "select"
-PLATFORMS = [SENSOR]
+PLATFORMS = [SELECT, SENSOR]
 
 
 # Configuration and options
