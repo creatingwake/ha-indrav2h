@@ -1,9 +1,9 @@
 """Constants for IndraV2H."""
 # Base component constants
-NAME = "IndraV2H"
+NAME = "Indra V2H"
 DOMAIN = "indrav2h"
 DOMAIN_DATA = f"{DOMAIN}_data"
-VERSION = "0.0.0"
+VERSION = "0.0.2"
 
 ATTRIBUTION = "Data provided by Indra https://smartportal.indra.co.uk"
 ISSUE_URL = "https://github.com/creatingwake/ha-indrav2h/issues"

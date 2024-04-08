@@ -5,7 +5,7 @@ from homeassistant.helpers import entity_platform
 from pyindrav2h import V2H_MODES
 
 
-from .const import DOMAIN
+from .const import DOMAIN, NAME
 from .entity import Indrav2hEntity
 
 
@@ -36,7 +36,10 @@ class V2HOperatingModeSelect(Indrav2hEntity, SelectEntity):
     @property
     def device_info(self):
         """Return information to link this entity with the correct device."""
-        return {"identifiers": {(DOMAIN, self.coordinator.api.device.serial)}}
+        return {
+            "name": NAME,
+            "identifiers": {(DOMAIN, self.coordinator.api.device.serial)}
+            }
 
     @property
     def name(self):
@@ -51,6 +54,7 @@ class V2HOperatingModeSelect(Indrav2hEntity, SelectEntity):
     async def async_select_option(self, option: str) -> None:
         """Change the selected option."""
         await self.device.select_charger_mode(option)
+        # TODO: when option is changed, actual "selected mode" sensor isn't updated until next scheduled coordinator refresh
         self.async_schedule_update_ha_state()
         return
 
