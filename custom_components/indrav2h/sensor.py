@@ -1,6 +1,6 @@
 """Sensor platform for indra_v2h."""
 from .const import DEFAULT_NAME
-from .const import DOMAIN
+from .const import DOMAIN, NAME
 from .const import ICON
 from .const import SENSOR
 from .entity import Indrav2hEntity
@@ -45,13 +45,6 @@ def create_meta(
         "state_class": state_class,
         "attrs": {},
     }
-
-
-# async def async_setup_entry(hass, entry, async_add_devices):
-#     """Setup sensor platform."""
-#     coordinator = hass.data[DOMAIN][entry.entry_id]
-#     async_add_devices([IndraV2hSensor(coordinator, entry)])
-
 
 async def async_setup_entry(hass, entry, async_add_devices):
     """Setup sensor platform."""
@@ -190,13 +183,15 @@ class IndraV2hSensor(Indrav2hEntity, SensorEntity):
     @property
     def device_info(self):
         """Return information to link this entity with the correct device."""
-        return {"identifiers": {(DOMAIN, self.coordinator.api.device.serial)}}
+        return {
+            "name": NAME,
+            "identifiers": {(DOMAIN, self.coordinator.api.device.serial)}
+            }
 
     @property
     def name(self):
         """Return the name of the sensor."""
         return f"Indra V2H {self.meta['name']}"
-        # return f"{DEFAULT_NAME}_{SENSOR}_sensors_entity_meta_init"
 
     @property
     def unique_id(self):

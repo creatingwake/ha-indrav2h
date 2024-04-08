@@ -1,6 +1,6 @@
 """Constants for IndraV2H."""
 # Base component constants
-NAME = "IndraV2H"
+NAME = "Indra V2H"
 DOMAIN = "indrav2h"
 DOMAIN_DATA = f"{DOMAIN}_data"
 VERSION = "0.0.0"

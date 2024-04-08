@@ -1,12 +1,12 @@
 {
-  "version": "0.0.0",
+  "version": "0.0.1",
   "domain": "indrav2h",
-  "name": "IndraV2H",
+  "name": "Indra V2H",
   "documentation": "https://github.com/creatingwake/ha-indrav2h",
   "issue_tracker": "https://github.com/creatingwake/ha-indrav2h/issues",
   "dependencies": [],
   "config_flow": true,
   "codeowners": ["@creatingwake"],
-  "requirements": ["pyindrav2h>=0.0.3"],
+  "requirements": ["pyindrav2h>=0.0.4"],
   "loggers": ["custom_components.indrav2h"]
 }
