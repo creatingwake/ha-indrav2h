@@ -67,7 +67,7 @@ class Indrav2hFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
     async def _test_credentials(self, username, password):
         """Return true if credentials is valid."""
-        _LOGGER.critical("Test Indra credentials")
+        _LOGGER.debug("Test Indra credentials")
         try:
             # session = async_create_clientsession(self.hass)
             conn = Connection(username, password)
