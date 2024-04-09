@@ -20,7 +20,6 @@ from homeassistant.helpers.update_coordinator import UpdateFailed
 from pyindrav2h.v2hclient import v2hClient
 from pyindrav2h.connection import Connection
 
-# from .api import Indrav2hApiClient
 from .const import CONF_PASSWORD
 from .const import CONF_USERNAME
 from .const import DOMAIN
