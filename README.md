@@ -59,7 +59,7 @@ custom_components/indrav2h/sensor.py
 
 This is a community project that lacks formal support.
 
-For support from the community please join the Indra V2H trial support community: https://indra.v2h.zendesk.com/hc/en-gb/community/topics
+For support from the community please join the Indra V2H trial support community: https://indrav2h.zendesk.com/hc/en-gb/community/topics
 
 ## Contributions are welcome!
 
