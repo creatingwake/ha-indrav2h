@@ -2,6 +2,7 @@
 import voluptuous as vol
 from homeassistant.components.select import SelectEntity
 from homeassistant.helpers import entity_platform
+import operator
 from pyindrav2h import V2H_MODES
 
 
@@ -49,7 +50,7 @@ class V2HOperatingModeSelect(Indrav2hEntity, SelectEntity):
     @property
     def current_option(self):
         """Return the state of the sensor."""
-        return self.device.mode
+        return operator.attrgetter('mode')(self.device)
 
     async def async_select_option(self, option: str) -> None:
         """Change the selected option."""
