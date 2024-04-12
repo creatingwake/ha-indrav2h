@@ -4,17 +4,18 @@ from .const import DOMAIN, NAME
 from .const import ICON
 from .const import SENSOR
 from .entity import Indrav2hEntity
-from homeassistant.components.sensor import SensorEntity
-from homeassistant.const import FREQUENCY_HERTZ
+from homeassistant.components.sensor import SensorEntity, SensorDeviceClass, SensorStateClass
 from homeassistant.const import PERCENTAGE
-from homeassistant.const import POWER_WATT
-from homeassistant.const import TEMP_CELSIUS
-from homeassistant.const import DEVICE_CLASS_BATTERY
-from homeassistant.const import DEVICE_CLASS_ENERGY
-from homeassistant.const import DEVICE_CLASS_POWER
-from homeassistant.const import DEVICE_CLASS_TEMPERATURE
-from homeassistant.const import DEVICE_CLASS_VOLTAGE
-from homeassistant.const import ELECTRIC_POTENTIAL_VOLT
+from homeassistant.const import UnitOfPower, UnitOfTemperature, UnitOfEnergy, UnitOfElectricPotential, UnitOfElectricCurrent, UnitOfFrequency
+DEVICE_CLASS_BATTERY = SensorDeviceClass.BATTERY
+DEVICE_CLASS_ENERGY = SensorDeviceClass.ENERGY
+DEVICE_CLASS_POWER = SensorDeviceClass.POWER
+DEVICE_CLASS_TEMPERATURE = SensorDeviceClass.TEMPERATURE
+DEVICE_CLASS_VOLTAGE =  SensorDeviceClass.VOLTAGE
+DEVICE_CLASS_DATE = SensorDeviceClass.DATE
+DEVICE_CLASS_CURRENT = SensorDeviceClass.CURRENT
+DEVICE_CLASS_FREQUENCY = SensorDeviceClass.FREQUENCY
+
 import operator
 
 ICON_VOLT = "mdi:lightning-bolt"
@@ -64,32 +65,34 @@ async def async_setup_entry(hass, entry, async_add_devices):
             create_meta("Charging State", "state", icon=ICON_POWER),
         )
     )
+    # NOTE: Removing this sensor - most users don't seem to return the lastOn param in the API and
+    # This param doesn't seem useful - it hasn't updated since install for me.
+    # sensors.append(
+    #     IndraV2hSensor(
+    #         coordinator,
+    #         entry,
+    #         create_meta("Last On Date", "lastOn", icon=ICON_TIME_DATE),
+    #     )
+    # )
     sensors.append(
         IndraV2hSensor(
             coordinator,
             entry,
-            create_meta("Last On Date", "lastOn", icon=ICON_TIME_DATE),
+            create_meta("Device is ACTIVE?", "isActive", icon=ICON_BOOLEAN), # TODO: This should be moved to a BINARY_SENSOR
         )
     )
     sensors.append(
         IndraV2hSensor(
             coordinator,
             entry,
-            create_meta("Device is ACTIVE?", "isActive", icon=ICON_BOOLEAN),
+            create_meta("Last updated", "updateTime", icon=ICON_TIME_DATE, device_class=DEVICE_CLASS_DATE),
         )
     )
     sensors.append(
         IndraV2hSensor(
             coordinator,
             entry,
-            create_meta("Last updated", "updateTime", icon=ICON_TIME_DATE),
-        )
-    )
-    sensors.append(
-        IndraV2hSensor(
-            coordinator,
-            entry,
-            create_meta("Boost mode ACTIVE?", "isBoosting", icon=ICON_BOOLEAN),
+            create_meta("Boost mode ACTIVE?", "isBoosting", icon=ICON_BOOLEAN), # TODO: This should be moved to a BINARY_SENSOR
         )
     )
     sensors.append(
@@ -103,63 +106,74 @@ async def async_setup_entry(hass, entry, async_add_devices):
         IndraV2hSensor(
             coordinator,
             entry,
-            create_meta("Active Energy From EV", "activeEnergyFromEv", icon=ICON_POWER),
+            create_meta("Active Energy From EV",
+                        "activeEnergyFromEv",
+                        icon=ICON_POWER,
+                        device_class=DEVICE_CLASS_ENERGY,
+                        unit=UnitOfEnergy.WATT_HOUR,
+                        state_class=SensorStateClass.TOTAL_INCREASING,
+                        ),
         )
     )
     sensors.append(
         IndraV2hSensor(
             coordinator,
             entry,
-            create_meta("Active Energy To EV", "activeEnergyToEv", icon=ICON_POWER),
+            create_meta("Active Energy To EV",
+                        "activeEnergyToEv",
+                        icon=ICON_POWER,
+                        device_class=DEVICE_CLASS_ENERGY,
+                        state_class=SensorStateClass.TOTAL_INCREASING,
+                        unit=UnitOfEnergy.WATT_HOUR),
         )
     )
     sensors.append(
         IndraV2hSensor(
             coordinator,
             entry,
-            create_meta("Power To  EV", "powerToEv", icon=ICON_POWER),
+            create_meta("Power To  EV", "powerToEv", icon=ICON_POWER, device_class=DEVICE_CLASS_POWER, unit=UnitOfPower.WATT),
         )
     )
     sensors.append(
         IndraV2hSensor(
             coordinator,
             entry,
-            create_meta("House Load", "houseLoad", icon="mdi:home-lightning-bolt"),
+            create_meta("House Load", "houseLoad", icon="mdi:home-lightning-bolt", device_class=DEVICE_CLASS_POWER, unit=UnitOfPower.WATT),
         )
     )
     sensors.append(
         IndraV2hSensor(
             coordinator,
             entry,
-            create_meta("Current", "current", icon="mdi:lightning-bolt-circle"),
+            create_meta("Current", "current", icon="mdi:lightning-bolt-circle", device_class=DEVICE_CLASS_CURRENT, unit=UnitOfElectricCurrent.AMPERE),
         )
     )
     sensors.append(
         IndraV2hSensor(
             coordinator,
             entry,
-            create_meta("Voltage", "voltage", icon=ICON_VOLT),
+            create_meta("Voltage", "voltage", icon=ICON_VOLT, device_class=DEVICE_CLASS_VOLTAGE, unit=UnitOfElectricPotential.VOLT),
         )
     )
     sensors.append(
         IndraV2hSensor(
             coordinator,
             entry,
-            create_meta("Frequency", "freq", icon=ICON_FREQ),
+            create_meta("Frequency", "freq", icon=ICON_FREQ, device_class=DEVICE_CLASS_FREQUENCY, unit=UnitOfFrequency.HERTZ),
         )
     )
     sensors.append(
         IndraV2hSensor(
             coordinator,
             entry,
-            create_meta("Temperature", "temperature", icon="mdi:temperature-celsius"),
+            create_meta("Temperature", "temperature", icon="mdi:temperature-celsius", device_class=DEVICE_CLASS_TEMPERATURE, unit=UnitOfTemperature.CELSIUS),
         )
     )
     sensors.append(
         IndraV2hSensor(
             coordinator,
             entry,
-            create_meta("Vehicle State Of Charge", "soc", icon="mdi:car-electric"),
+            create_meta("Vehicle State Of Charge", "soc", icon="mdi:car-electric", device_class=DEVICE_CLASS_BATTERY, unit=PERCENTAGE),
         )
     )
     sensors.append(
@@ -211,6 +225,15 @@ class IndraV2hSensor(Indrav2hEntity, SensorEntity):
 
     @property
     def device_class(self):
-        """Return de device class of the sensor."""
-        return "indra_v2h__custom_device_class"
+        """Return the device class of the sensor."""
+        return self.meta["device_class"]
+    
+    @property
+    def unit_of_measurement(self):
+        return self.meta["unit"]
+
+    @property
+    def state_class(self):
+        """Return the state class of the sensor."""
+        return self.meta.get("state_class", None)
 
