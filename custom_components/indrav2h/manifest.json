@@ -1,5 +1,5 @@
 {
-  "version": "0.0.4",
+  "version": "0.0.5",
   "domain": "indrav2h",
   "name": "Indra V2H",
   "documentation": "https://github.com/creatingwake/ha-indrav2h",
@@ -7,6 +7,6 @@
   "dependencies": [],
   "config_flow": true,
   "codeowners": ["@creatingwake"],
-  "requirements": ["pyindrav2h>=0.0.7"],
+  "requirements": ["pyindrav2h>=0.0.8"],
   "loggers": ["custom_components.indrav2h"]
 }
