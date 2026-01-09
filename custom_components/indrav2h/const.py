@@ -3,7 +3,7 @@
 NAME = "Indra V2H"
 DOMAIN = "indrav2h"
 DOMAIN_DATA = f"{DOMAIN}_data"
-VERSION = "0.0.5"
+VERSION = "0.0.7"
 
 ATTRIBUTION = "Data provided by Indra https://smartportal.indra.co.uk"
 ISSUE_URL = "https://github.com/creatingwake/ha-indrav2h/issues"
